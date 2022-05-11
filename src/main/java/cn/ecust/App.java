@@ -8,7 +8,7 @@ import cn.ecust.action.HealthDailyAction;
  * @Date 2022/5/3, 01:02
  */
 public class App {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         HealthDailyAction.MultithreadingAction();
     }
 }
