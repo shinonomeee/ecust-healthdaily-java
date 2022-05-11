@@ -59,7 +59,7 @@ public final class HealthDailyAction {
                         System.out.println("[user]" + userInfos[no][0] + ": Requirement Already Satisfied!");
                         break;
                     case NoSuchElement_FillinButton:
-                        System.out.println("Elements' Xpath Might have been changed, plaese check!");
+                        System.out.println("Elements' Xpath Might have been changed, please check!");
                         break;
                     case RuntimeError_Login:
                         System.out.println("RuntimeErrorException occurs while getting loginURL, please check!");
