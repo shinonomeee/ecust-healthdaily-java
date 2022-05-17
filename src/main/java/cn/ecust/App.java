@@ -1,6 +1,5 @@
 package cn.ecust;
 
-import cn.ecust.action.HealthDailyAction;
 import cn.ecust.action.impl.HealthDailyActionImpl;
 
 /**
