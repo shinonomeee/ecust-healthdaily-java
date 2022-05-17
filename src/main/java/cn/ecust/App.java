@@ -1,6 +1,7 @@
 package cn.ecust;
 
 import cn.ecust.action.HealthDailyAction;
+import cn.ecust.action.impl.HealthDailyActionImpl;
 
 /**
  * @Description
@@ -9,6 +10,7 @@ import cn.ecust.action.HealthDailyAction;
  */
 public class App {
     public static void main(String[] args) {
-        HealthDailyAction.MultithreadingAction();
+        HealthDailyAction healthDailyAction = new HealthDailyActionImpl();
+        healthDailyAction.MultithreadingAction();
     }
 }

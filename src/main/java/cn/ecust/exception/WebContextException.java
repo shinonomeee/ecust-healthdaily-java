@@ -7,7 +7,8 @@ package cn.ecust.exception;
  */
 public class WebContextException extends RuntimeException {
 
-    WebContextException(){}
+    WebContextException() {
+    }
 
     WebContextException(String message) {
         super(message);
