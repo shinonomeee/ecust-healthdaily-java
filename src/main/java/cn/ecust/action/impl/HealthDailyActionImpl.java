@@ -1,7 +1,6 @@
 package cn.ecust.action.impl;
 
 import cn.ecust.action.HealthDailyAction;
-import cn.ecust.exception.WebContextException;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,13 +17,13 @@ import static cn.ecust.constants.Info.*;
 @Slf4j
 public class HealthDailyActionImpl implements HealthDailyAction {
     @Override
-    public void fillinAction(String user, String pwd) throws WebContextException {
+    public void fillinAction(String user, String pwd) {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get(loginURL);
         } catch (RuntimeErrorException e) {
             log.error("RuntimeErrorException occurs while getting loginURL");
-            throw new WebDriverException("RuntimeErrorException occurs while getting loginURL");
+            return;
         }
         try {
             driver.findElement(By.id("username")).sendKeys(user);
@@ -32,13 +31,13 @@ public class HealthDailyActionImpl implements HealthDailyAction {
             driver.findElement(By.xpath(loginButton)).click(); // 点击登录按钮
         } catch (NoSuchElementException e) {
             log.error("Element Not Found");
-            throw new WebDriverException("Element Not Found");
+            return;
         }
         try {
             driver.get(fillinURL);
         } catch (RuntimeErrorException e) {
             log.error("RuntimeErrorException occurs while getting fillinURL");
-            throw new WebDriverException("RuntimeErrorException occurs while getting fillinURL");
+            return;
         }
         try {
             driver.findElement(By.xpath(flagbutton)).click();             // 点击填写按钮
@@ -51,7 +50,7 @@ public class HealthDailyActionImpl implements HealthDailyAction {
             interactiveElements.forEach(x -> driver.findElement(By.xpath(x)).click()); // 点击交互元素
         } catch (NoSuchElementException e) {
             log.error("Elements' Xpath Might have been changed");
-            throw new WebDriverException("Elements' Xpath Might have been changed");
+            return;
         }
         driver.close();
         log.info(user + ": Successfully Fillin!");

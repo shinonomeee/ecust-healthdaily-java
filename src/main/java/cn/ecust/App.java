@@ -10,7 +10,6 @@ import cn.ecust.action.impl.HealthDailyActionImpl;
  */
 public class App {
     public static void main(String[] args) {
-        HealthDailyAction healthDailyAction = new HealthDailyActionImpl();
-        healthDailyAction.MultithreadingAction();
+        new HealthDailyActionImpl().MultithreadingAction();
     }
 }
