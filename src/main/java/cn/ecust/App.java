@@ -1,7 +1,8 @@
 package cn.ecust;
 
 import cn.ecust.action.HealthDailyAction;
-import cn.ecust.action.impl.MutiThreadingHealthDailyAction;
+import cn.ecust.action.impl.MutiThreadHealthDailyAction;
+import cn.ecust.action.impl.TimingMutiThreadHealthDailyAction;
 
 /**
  * @Description
@@ -10,7 +11,7 @@ import cn.ecust.action.impl.MutiThreadingHealthDailyAction;
  */
 public class App {
     public static void main(String[] args) {
-        HealthDailyAction action = new MutiThreadingHealthDailyAction();
-        action.fillin();
+        HealthDailyAction action = new MutiThreadHealthDailyAction();
+        action.fillIn();
     }
 }

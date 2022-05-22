@@ -1,7 +1,7 @@
 package cn.ecust.action;
 
 
-import lombok.extern.slf4j.Slf4j;
+import cn.ecust.utils.FileHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -10,49 +10,51 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import javax.management.RuntimeErrorException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static cn.ecust.constants.Info.*;
 
-@Slf4j
-public abstract class HealthDailyAction {
+public abstract class HealthDailyAction implements FileHelper {
 
-    public abstract void fillin();
+    public abstract void fillIn();
 
-    protected void fillinWithUserAndPwd(String user, String pwd) {
+    protected void completeFillIn(String user, String pwd) {
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        FileHelper.logWriter(date + fillInWithUserAndPwd(user, pwd) + '\n');
+    }
+
+    private String fillInWithUserAndPwd(String user, String pwd) {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get(loginURL);
         } catch (RuntimeErrorException e) {
-            log.error("RuntimeErrorException occurs while getting loginURL");
-            return;
+            return " ERROR: RuntimeErrorException occurs while getting loginURL";
         }
         try {
             driver.findElement(By.id("username")).sendKeys(user);
             driver.findElement(By.id("password")).sendKeys(pwd);
             driver.findElement(By.xpath(loginButton)).click(); // 点击登录按钮
         } catch (NoSuchElementException e) {
-            log.error("Element Not Found");
-            return;
+            return " ERROR: Element Not Found";
         }
         try {
             driver.get(fillinURL);
         } catch (RuntimeErrorException e) {
-            log.error("RuntimeErrorException occurs while getting fillinURL");
-            return;
+            return " ERROR: RuntimeErrorException occurs while getting fillinURL";
         }
         try {
             driver.findElement(By.xpath(flagbutton)).click();             // 点击填写按钮
         } catch (ElementNotInteractableException e) {
             driver.close();
-            log.info(user + ": Requirement Already Satisfied!");
-            return;
+            return " INFO: " + user + ": Requirement Already Satisfied!";
         }
         try {
             interactiveElements.forEach(x -> driver.findElement(By.xpath(x)).click()); // 点击交互元素
         } catch (NoSuchElementException e) {
-            log.error("Elements' Xpath Might have been changed");
-            return;
+            return " ERROR: Elements' Xpath Might have been changed";
         }
         driver.close();
-        log.info(user + ": Successfully Fillin!");
+        return " INFO: " + user + ": Successfully Fillin!";
     }
 }

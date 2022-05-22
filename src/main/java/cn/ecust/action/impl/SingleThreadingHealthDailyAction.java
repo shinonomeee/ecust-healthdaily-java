@@ -7,19 +7,19 @@ import org.apache.commons.lang3.StringUtils;
 import static cn.ecust.constants.Info.*;
 
 /**
- * @Description
+ * @Description 单线程填报
  * @Author chris
  * @Date 2022/5/17, 12:52
  */
 @Slf4j
 public class SingleThreadingHealthDailyAction extends HealthDailyAction {
     @Override
-    public void fillin() {
+    public void fillIn() {
         if (StringUtils.isAnyBlank(defaultUser, defaultPwd)) {
             log.error("No default user or password!");
             return;
         }
-        fillinWithUserAndPwd(defaultUser, defaultPwd);
+        completeFillIn(defaultUser, defaultPwd);
     }
 
 }
