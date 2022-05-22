@@ -21,7 +21,9 @@ public abstract class HealthDailyAction implements FileHelper {
 
     protected void completeFillIn(String user, String pwd) {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        FileHelper.logWriter(date + fillInWithUserAndPwd(user, pwd) + '\n');
+        String finalOutPut = date + fillInWithUserAndPwd(user, pwd) + '\n';
+        FileHelper.logWriter(finalOutPut);
+        System.out.println(finalOutPut);
     }
 
     private String fillInWithUserAndPwd(String user, String pwd) {

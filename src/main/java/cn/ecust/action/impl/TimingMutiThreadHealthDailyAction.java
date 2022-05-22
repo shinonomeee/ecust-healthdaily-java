@@ -8,10 +8,17 @@ import cn.ecust.utils.Timing;
  * @Date 2022/5/22, 13:26
  */
 public class TimingMutiThreadHealthDailyAction extends MutiThreadHealthDailyAction implements Timing {
+
+    private static final int hour = 0;
+
+    private static final int min = 0;
+
+    private static final int sec = 0;
+
     @Override
     public void fillIn() {
         // 等到指定时间执行
-        while (!Timing.timeTrigger(0, 0, 0));
+        while (!Timing.timeTrigger(hour, min, sec));
 
         super.fillIn();
     }

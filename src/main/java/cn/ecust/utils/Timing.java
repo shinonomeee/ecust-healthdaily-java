@@ -17,7 +17,7 @@ public interface Timing {
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
         int currentSecond = Calendar.getInstance().get(Calendar.SECOND);
-        return currentHour == hour && currentMinute == minute && currentSecond >= second;
+        return currentHour <= hour + 12 && currentMinute >= minute && currentSecond >= second;
     }
 
 }
