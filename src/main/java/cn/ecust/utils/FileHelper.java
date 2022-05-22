@@ -14,7 +14,7 @@ import java.nio.file.StandardOpenOption;
  */
 public interface FileHelper {
 
-    String fileName = "fillinHistory.txt";
+    String fileName = "fillInHistory.txt";
 
     static void logWriter(String logInfo) {
         Path filePath = Paths.get(fileName);
