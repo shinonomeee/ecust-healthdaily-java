@@ -1,52 +1,58 @@
 package cn.ecust.action;
 
-import org.openqa.selenium.*;
+
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import javax.management.RuntimeErrorException;
 
 import static cn.ecust.constants.Info.*;
 
-public interface HealthDailyAction {
+@Slf4j
+public abstract class HealthDailyAction {
 
-    static void fillinAction(String user, String pwd) throws WebDriverException {
+    public abstract void fillin();
+
+    protected void fillinWithUserAndPwd(String user, String pwd) {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get(loginURL);
         } catch (RuntimeErrorException e) {
-            throw new WebDriverException("RuntimeErrorException occurs while getting loginURL");
+            log.error("RuntimeErrorException occurs while getting loginURL");
+            return;
         }
         try {
             driver.findElement(By.id("username")).sendKeys(user);
             driver.findElement(By.id("password")).sendKeys(pwd);
             driver.findElement(By.xpath(loginButton)).click(); // 点击登录按钮
         } catch (NoSuchElementException e) {
-            throw new WebDriverException("Element Not Found");
+            log.error("Element Not Found");
+            return;
         }
         try {
             driver.get(fillinURL);
         } catch (RuntimeErrorException e) {
-            throw new WebDriverException("RuntimeErrorException occurs while getting fillinURL");
+            log.error("RuntimeErrorException occurs while getting fillinURL");
+            return;
         }
         try {
             driver.findElement(By.xpath(flagbutton)).click();             // 点击填写按钮
         } catch (ElementNotInteractableException e) {
             driver.close();
-            System.out.println("[user]" + user + ": Requirement Already Satisfied!");
+            log.info(user + ": Requirement Already Satisfied!");
             return;
         }
         try {
             interactiveElements.forEach(x -> driver.findElement(By.xpath(x)).click()); // 点击交互元素
         } catch (NoSuchElementException e) {
-            throw new WebDriverException("Elements' Xpath Might have been changed");
+            log.error("Elements' Xpath Might have been changed");
+            return;
         }
         driver.close();
-        System.out.println("[user]" + user + ": Successfully Fillin!");
-    }
-    static void MultithreadingAction() {
-        for (int i = 0; i < userInfos.length; ++i) {
-            final int no = i;
-            new Thread(() -> fillinAction(userInfos[no][0], userInfos[no][1])).start();
-        }
+        log.info(user + ": Successfully Fillin!");
     }
 }
