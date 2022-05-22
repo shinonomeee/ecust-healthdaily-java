@@ -11,7 +11,7 @@ import cn.ecust.action.impl.TimingMutiThreadHealthDailyAction;
  */
 public class App {
     public static void main(String[] args) {
-        HealthDailyAction action = new MutiThreadHealthDailyAction();
+        HealthDailyAction action = new TimingMutiThreadHealthDailyAction();
         action.fillIn();
     }
 }
