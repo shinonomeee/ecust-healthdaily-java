@@ -7,14 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import static cn.ecust.constants.Info.fileName;
+
 /**
  * @Description
  * @Author chris
  * @Date 2022/5/22, 23:31
  */
 public interface FileHelper {
-
-    String fileName = "fillInHistory.txt";
 
     static void logWriter(String logInfo) {
         Path filePath = Paths.get(fileName);
