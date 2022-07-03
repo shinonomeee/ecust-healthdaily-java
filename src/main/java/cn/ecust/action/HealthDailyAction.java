@@ -46,13 +46,18 @@ public abstract class HealthDailyAction implements FileHelper {
             return " ERROR: RuntimeErrorException occurs while getting fillinURL";
         }
         try {
-            driver.findElement(By.xpath(flagbutton)).click();             // 点击填写按钮
+            driver.findElement(By.xpath(flagButton)).click();             // 点击填写按钮
         } catch (ElementNotInteractableException e) {
             driver.close();
             return " INFO: " + user + ": Requirement Already Satisfied!";
         }
         try {
-            interactiveElements.forEach(x -> driver.findElement(By.xpath(x)).click()); // 点击交互元素
+            driver.findElement(By.xpath(location.get(user))).click();   // 根据用户学号去哈希表里搜，因此如果添加新的用户需要修改此处
+            driver.findElement(By.xpath(tripCode)).click();
+            driver.findElement(By.xpath(outOrNot)).click();
+            driver.findElement(By.xpath(submit)).click();
+            driver.findElement(By.xpath(confirmSubmit)).click();
+            driver.findElement(By.xpath(finalConfirm)).click();
         } catch (NoSuchElementException e) {
             return " ERROR: Elements' Xpath Might have been changed";
         }
