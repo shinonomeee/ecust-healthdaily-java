@@ -12,7 +12,7 @@ import static cn.ecust.constants.Info.*;
  * @Date 2022/5/17, 12:52
  */
 @Slf4j
-public class SingleThreadingHealthDailyAction extends HealthDailyAction {
+public class SingleThreadingHealthDailyAction implements HealthDailyAction {
     @Override
     public void fillIn() {
         if (StringUtils.isAnyBlank(defaultUser, defaultPwd)) {

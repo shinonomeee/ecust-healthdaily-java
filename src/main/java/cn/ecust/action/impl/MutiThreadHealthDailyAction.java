@@ -9,7 +9,7 @@ import static cn.ecust.constants.Info.userInfos;
  * @Author chris
  * @Date 2022/5/18, 00:35
  */
-public class MutiThreadHealthDailyAction extends HealthDailyAction {
+public class MutiThreadHealthDailyAction implements HealthDailyAction {
     @Override
     public void fillIn() {
         for (int i = 0; i < userInfos.length; ++i) {
