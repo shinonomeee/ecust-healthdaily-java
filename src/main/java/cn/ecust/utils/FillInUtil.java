@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static cn.ecust.constants.Info.*;
-import static cn.ecust.constants.Info.finalConfirm;
 
 /**
  * @Description
@@ -53,12 +52,13 @@ public interface FillInUtil {
             return " INFO: " + user + ": Requirement Already Satisfied!";
         }
         try {
-            driver.findElement(By.xpath(location.get(user))).click();   // 根据用户学号去哈希表里搜，因此如果添加新的用户需要修改此处
-            driver.findElement(By.xpath(tripCode)).click();
-            driver.findElement(By.xpath(outOrNot)).click();
-            driver.findElement(By.xpath(submit)).click();
-            driver.findElement(By.xpath(confirmSubmit)).click();
-            driver.findElement(By.xpath(finalConfirm)).click();
+            ChainActionUtil.init(driver)
+                    .Click(location.get(user))  // 根据用户学号去哈希表里搜，因此如果添加新的用户需要修改此处
+                    .Click(tripCode)
+                    .Click(outOrNot)
+                    .Click(submit)
+                    .Click(confirmSubmit)
+                    .Click(finalConfirm);
         } catch (NoSuchElementException e) {
             return " ERROR: Elements' Xpath Might have been changed";
         }
