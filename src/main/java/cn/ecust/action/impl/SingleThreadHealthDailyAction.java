@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
  * @Date 2022/5/17, 12:52
  */
 @Slf4j
-public class SingleThreadHealthDailyAction implements HealthDailyAction {
+public class SingleThreadHealthDailyAction extends BasicFillInAction {
     @Override
     public void fillIn() {
-        JSONUtil.getUsers().forEach(FillInUtil::completeFillIn);
+        JSONUtil.getUsers().forEach(super::completeFillIn);
     }
 
 }

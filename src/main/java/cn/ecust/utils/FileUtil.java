@@ -14,7 +14,7 @@ import java.nio.file.StandardOpenOption;
  * @Author chris
  * @Date 2022/5/22, 23:31
  */
-public class FileHelper {
+public class FileUtil {
 
     public static void logWriter(String logInfo) {
         Path filePath = Paths.get(FilePaths.logFilePath);

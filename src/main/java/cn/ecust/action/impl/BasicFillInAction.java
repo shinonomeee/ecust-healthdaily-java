@@ -1,6 +1,9 @@
-package cn.ecust.utils;
+package cn.ecust.action.impl;
 
+import cn.ecust.action.HealthDailyAction;
 import cn.ecust.entity.User;
+import cn.ecust.utils.ChainActionUtil;
+import cn.ecust.utils.FileUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,22 +15,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static cn.ecust.constants.Info.*;
+import static cn.ecust.constants.Info.finalConfirm;
 
 /**
- * @Description 填报的核心代码
+ * @Description TODO
  * @Author chris
- * @Date 2022/7/9, 00:01
+ * @Date 2022/7/18, 04:09
  */
-public class FillInUtil {
+public class BasicFillInAction implements HealthDailyAction {
 
-    public static void completeFillIn(User user) {
+    @Override
+    public void fillIn() {}
+
+    protected void completeFillIn(User user) {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         String finalOutPut = date + fillInWithUserAndPwd(user) + '\n';
-        FileHelper.logWriter(finalOutPut);
+        FileUtil.logWriter(finalOutPut);
         System.out.println(finalOutPut);
     }
 
-    private static String fillInWithUserAndPwd(User user) {
+    private String fillInWithUserAndPwd(User user) {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get(loginURL);

@@ -18,8 +18,8 @@ public class TimingMutiThreadHealthDailyAction extends MutiThreadHealthDailyActi
     @Override
     public void fillIn() {
         // 等到指定时间执行
-        while (!Timing.timeTrigger(hour, min, sec));
-
+        while (!Timing.timeTrigger(hour, min, sec)) {
+        }
         super.fillIn();
     }
 }

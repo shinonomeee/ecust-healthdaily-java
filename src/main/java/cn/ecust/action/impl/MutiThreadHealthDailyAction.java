@@ -13,12 +13,12 @@ import java.util.List;
  * @Author chris
  * @Date 2022/5/18, 00:35
  */
-public class MutiThreadHealthDailyAction implements HealthDailyAction {
+public class MutiThreadHealthDailyAction extends BasicFillInAction {
     @Override
     public void fillIn() {
         List<User> users = JSONUtil.getUsers();
         users.forEach(
-                user -> new Thread(() -> FillInUtil.completeFillIn(user)).start()
+                user -> new Thread(() -> super.completeFillIn(user)).start()
         );
     }
 }
