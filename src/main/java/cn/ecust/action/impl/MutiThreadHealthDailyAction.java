@@ -2,7 +2,6 @@ package cn.ecust.action.impl;
 
 import cn.ecust.action.HealthDailyAction;
 import cn.ecust.entity.User;
-import cn.ecust.utils.FillInUtil;
 import cn.ecust.utils.JSONUtil;
 
 import java.util.List;
