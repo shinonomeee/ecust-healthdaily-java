@@ -7,22 +7,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import static cn.ecust.constants.Info.fileName;
+import static cn.ecust.constants.Info.logFileName;
 
 /**
  * @Description
  * @Author chris
  * @Date 2022/5/22, 23:31
  */
-public interface FileHelper {
+public class FileHelper {
 
-    static void logWriter(String logInfo) {
-        Path filePath = Paths.get(fileName);
+    public static void logWriter(String logInfo) {
+        Path filePath = Paths.get(logFileName);
         try {
             Files.write(filePath
                     , logInfo.getBytes(StandardCharsets.UTF_8)
                     , StandardOpenOption.APPEND);
         } catch (IOException ignored) {
         }
+    }
+
+    public static void main(String[] args) {
+        logWriter("TEST");
     }
 }

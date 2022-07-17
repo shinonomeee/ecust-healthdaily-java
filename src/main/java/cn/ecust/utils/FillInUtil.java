@@ -1,5 +1,6 @@
 package cn.ecust.utils;
 
+import cn.ecust.entity.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,16 +18,16 @@ import static cn.ecust.constants.Info.*;
  * @Author chris
  * @Date 2022/7/9, 00:01
  */
-public interface FillInUtil {
+public class FillInUtil {
 
-    default void completeFillIn(String user, String pwd) {
+    public static void completeFillIn(User user) {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        String finalOutPut = date + fillInWithUserAndPwd(user, pwd) + '\n';
+        String finalOutPut = date + fillInWithUserAndPwd(user) + '\n';
         FileHelper.logWriter(finalOutPut);
         System.out.println(finalOutPut);
     }
 
-    default String fillInWithUserAndPwd(String user, String pwd) {
+    private static String fillInWithUserAndPwd(User user) {
         WebDriver driver = new ChromeDriver();
         try {
             driver.get(loginURL);
@@ -34,8 +35,8 @@ public interface FillInUtil {
             return " ERROR: RuntimeErrorException occurs while getting loginURL";
         }
         try {
-            driver.findElement(By.id("username")).sendKeys(user);
-            driver.findElement(By.id("password")).sendKeys(pwd);
+            driver.findElement(By.id("username")).sendKeys(user.getAccount());
+            driver.findElement(By.id("password")).sendKeys(user.getPassword());
             driver.findElement(By.xpath(loginButton)).click(); // 点击登录按钮
         } catch (NoSuchElementException e) {
             return " ERROR: Element Not Found";
@@ -49,11 +50,11 @@ public interface FillInUtil {
             driver.findElement(By.xpath(flagButton)).click();             // 点击填写按钮
         } catch (ElementNotInteractableException e) {
             driver.close();
-            return " INFO: " + user + ": Requirement Already Satisfied!";
+            return " INFO: " + user.getAccount() + ": Requirement Already Satisfied!";
         }
         try {
             ChainActionUtil.init(driver)
-                    .Click(location.get(user))  // 根据用户学号去哈希表里搜，因此如果添加新的用户需要修改此处
+                    .Click(location.get(user.getLocation()))  // 根据用户位置去哈希表里搜
                     .Click(tripCode)
                     .Click(outOrNot)
                     .Click(submit)
@@ -63,6 +64,6 @@ public interface FillInUtil {
             return " ERROR: Elements' Xpath Might have been changed";
         }
         driver.close();
-        return " INFO: " + user + ": Successfully Fillin!";
+        return " INFO: " + user.getAccount() + ": Successfully Fillin!";
     }
 }

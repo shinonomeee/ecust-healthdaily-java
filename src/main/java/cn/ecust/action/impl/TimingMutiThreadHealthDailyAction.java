@@ -7,7 +7,7 @@ import cn.ecust.utils.Timing;
  * @Author chris
  * @Date 2022/5/22, 13:26
  */
-public class TimingMutiThreadHealthDailyAction extends MutiThreadHealthDailyAction implements Timing {
+public class TimingMutiThreadHealthDailyAction extends MutiThreadHealthDailyAction {
 
     private static final int hour = 0;
 

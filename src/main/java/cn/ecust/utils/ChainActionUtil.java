@@ -3,8 +3,6 @@ package cn.ecust.utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.function.Function;
-
 /**
  * @Description
  * @Author chris
@@ -14,8 +12,6 @@ public class ChainActionUtil {
 
     private static volatile ChainActionUtil instance;
 
-    private static Object lock;
-
     private static WebDriver driver;
 
     public static ChainActionUtil init(WebDriver inputDriver) {
@@ -24,12 +20,12 @@ public class ChainActionUtil {
     }
 
     public static ChainActionUtil getInstance() {
-        synchronized (lock) {
-            if (instance == null) {
-                instance = new ChainActionUtil();
-            }
-            return instance;
+//        synchronized (ChainActionUtil.class) {
+        if (instance == null) {
+            instance = new ChainActionUtil();
         }
+        return instance;
+//        }
     }
 
     public ChainActionUtil Click(String xpath) {

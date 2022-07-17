@@ -7,9 +7,9 @@ import java.util.Calendar;
  * @Author chris
  * @Date 2022/5/22, 23:11
  */
-public interface Timing {
+public class Timing {
 
-    static boolean timeTrigger(int hour, int minute, int second) {
+    public static boolean timeTrigger(int hour, int minute, int second) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ignored) {
