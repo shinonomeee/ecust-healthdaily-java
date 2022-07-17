@@ -1,5 +1,6 @@
 package cn.ecust.utils;
 
+import cn.ecust.constants.FilePaths;
 import cn.ecust.constants.Info;
 import cn.ecust.entity.User;
 import com.google.common.reflect.TypeToken;
@@ -24,11 +25,10 @@ public class JSONUtil {
         Gson gson = new Gson();
         JsonReader reader = null;
         try {
-            reader = new JsonReader(new FileReader(Info.userInfoFileName));
+            reader = new JsonReader(new FileReader(FilePaths.userInfosFilePath));
         } catch (FileNotFoundException ignored) {
         }
-        Type type = new TypeToken<List<User>>(){}.getType();
-        return gson.fromJson(reader, type);
+        return gson.fromJson(reader, new TypeToken<List<User>>(){}.getType());
     }
 
     public static void main(String[] args) {

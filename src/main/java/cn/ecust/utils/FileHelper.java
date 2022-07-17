@@ -1,13 +1,13 @@
 package cn.ecust.utils;
 
+import cn.ecust.constants.FilePaths;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-
-import static cn.ecust.constants.Info.logFileName;
 
 /**
  * @Description
@@ -17,7 +17,7 @@ import static cn.ecust.constants.Info.logFileName;
 public class FileHelper {
 
     public static void logWriter(String logInfo) {
-        Path filePath = Paths.get(logFileName);
+        Path filePath = Paths.get(FilePaths.logFilePath);
         try {
             Files.write(filePath
                     , logInfo.getBytes(StandardCharsets.UTF_8)

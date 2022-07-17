@@ -14,11 +14,6 @@ public interface Info {
     // 单线程填报下的默认用户名和密码，要进行一次判空
     User defaultUser = new User("123", "123", "123");
 
-    // 默认日志文件保存路径
-    String logFileName = "fillInHistory.txt";
-
-    String userInfoFileName = "UserInfo.json";
-
     String loginURL = "https://workflow.ecust.edu.cn/default/work/uust/zxxsmryb/mrybcn.jsp", fillinURL = "https://workflow.ecust.edu.cn/default/work/uust/zxxsmryb/mrybtb.jsp", logoutURL = "https://i.ecust.edu.cn/_web/fusionportal/signOut.jsp?_p=YXM9MSZwPTEmbT1OJg__&service=http%3a%2f%2fi.ecust.edu.cn/";
     String loginButton = "//*[@id=\"casLoginForm\"]/p[5]/button";   // 登录按钮
     String flagButton = "//*[@id=\"radio_swjkzk20\"]/div/ins";
