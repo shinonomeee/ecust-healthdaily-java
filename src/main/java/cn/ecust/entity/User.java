@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * @Description
+ * @Description 用户实体类
  * @Author chris
  * @Date 2022/7/18, 00:47
  */

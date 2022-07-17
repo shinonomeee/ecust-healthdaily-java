@@ -16,11 +16,17 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Description
+ * @Description 解析json文件，从中读取User信息
  * @Author chris
  * @Date 2022/7/18, 00:05
  */
 public class JSONUtil {
+
+    /**
+     *
+     * @return 所有用户信息，以List形式返回
+     * @Author chris
+     */
     public static List<User> getUsers() {
         Gson gson = new Gson();
         JsonReader reader = null;
