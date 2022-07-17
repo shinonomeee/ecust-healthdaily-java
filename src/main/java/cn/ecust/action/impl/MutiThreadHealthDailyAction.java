@@ -16,11 +16,9 @@ import java.util.List;
 public class MutiThreadHealthDailyAction implements HealthDailyAction {
     @Override
     public void fillIn() {
-
         List<User> users = JSONUtil.getUsers();
-        for (int i = 0; i < users.size(); ++i) {
-            final int no = i;
-            new Thread(() -> FillInUtil.completeFillIn(users.get(no))).start();
-        }
+        users.forEach(
+                user -> new Thread(() -> FillInUtil.completeFillIn(user)).start()
+        );
     }
 }
