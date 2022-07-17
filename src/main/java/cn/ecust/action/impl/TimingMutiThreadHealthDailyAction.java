@@ -1,6 +1,6 @@
 package cn.ecust.action.impl;
 
-import cn.ecust.utils.Timing;
+import cn.ecust.utils.TimeUtil;
 
 /**
  * @Description 计时的多线程填报
@@ -18,7 +18,7 @@ public class TimingMutiThreadHealthDailyAction extends MutiThreadHealthDailyActi
     @Override
     public void fillIn() {
         // 等到指定时间执行
-        while (!Timing.timeTrigger(hour, min, sec)) {
+        while (!TimeUtil.timeTrigger(hour, min, sec)) {
         }
         super.fillIn();
     }

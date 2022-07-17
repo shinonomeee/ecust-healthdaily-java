@@ -7,7 +7,7 @@ import java.util.Calendar;
  * @Author chris
  * @Date 2022/5/22, 23:11
  */
-public class Timing {
+public class TimeUtil {
 
     /**
      * 每次触发timeTrigger，程序就会等待一秒，并且进行判断
