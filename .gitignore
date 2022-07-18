@@ -9,12 +9,14 @@
 
 ### diy ###
 
-fillInHistory.txt
 /.idea/
 /out/
 /target/
 /src/test/
 /src/META-INF/
 /src/main/resources/
-UserInfo.json
+
+### infomation related ###
 /src/main/java/cn/ecust/constants/FilePaths.java
+fillInHistory.txt
+UserInfo.json
