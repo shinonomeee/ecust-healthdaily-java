@@ -1,0 +1,20 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+### diy ###
+
+fillInHistory.txt
+/.idea/
+/out/
+/target/
+/src/test/
+/src/META-INF/
+/src/main/resources/
+UserInfo.json
+/src/main/java/cn/ecust/constants/FilePaths.java

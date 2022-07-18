@@ -1,6 +1,8 @@
 package cn.ecust;
 
-import cn.ecust.action.impl.TimingMutiThreadHealthDailyAction;
+import cn.ecust.action.HealthDailyAction;
+import cn.ecust.constants.ActionType;
+import cn.ecust.factory.HDActionFactory;
 
 /**
  * @Description
@@ -9,6 +11,8 @@ import cn.ecust.action.impl.TimingMutiThreadHealthDailyAction;
  */
 public class App {
     public static void main(String[] args) {
-        new TimingMutiThreadHealthDailyAction().fillIn();
+        HDActionFactory actionFactory = new HDActionFactory();
+        HealthDailyAction action = actionFactory.getAction(ActionType.TIMING_MUTI_THREAD);
+        action.fillIn();
     }
 }
