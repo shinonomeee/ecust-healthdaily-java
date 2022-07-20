@@ -66,11 +66,12 @@ $RECYCLE.BIN/
 ### diy ###
 
 /.idea/
-/out/
 /target/
 /src/test/
-/src/META-INF/
 /src/main/resources/
+pom.xml
+dependency-reduced-pom.xml
+log.log
 
 ### infomation related ###
 /src/main/java/cn/ecust/constants/FilePaths.java

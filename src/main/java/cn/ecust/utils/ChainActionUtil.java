@@ -10,46 +10,26 @@ import org.openqa.selenium.WebDriver;
  */
 public class ChainActionUtil {
 
-    /**
-     * 单例
-     */
-    private static volatile ChainActionUtil instance;
-
-    private static WebDriver driver;
+    private final WebDriver driver;
 
     /**
-     * @Description chain初始化，初始化driver，避免生成多余对象
+     *
      * @param inputDriver WebDriver
-     * @return 类本身
-     * @Author chris
      */
-    public static ChainActionUtil init(WebDriver inputDriver) {
+    public ChainActionUtil(WebDriver inputDriver) {
         driver = inputDriver;
-        return getInstance();
     }
 
-    /**
-     * 考虑多线程环境，需要加锁
-     * @return 类本身
-     * @Author chris
-     */
-    public static ChainActionUtil getInstance() {
-//        synchronized (ChainActionUtil.class) {
-        if (instance == null) {
-            instance = new ChainActionUtil();
-        }
-        return instance;
-//        }
-    }
 
     /**
      * 点按动作
+     *
      * @param xpath 元素的xpath位置
      * @return 类本身
      * @Author chris
      */
     public ChainActionUtil Click(String xpath) {
         driver.findElement(By.xpath(xpath)).click();
-        return instance;
+        return this;
     }
 }

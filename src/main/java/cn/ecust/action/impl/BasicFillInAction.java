@@ -60,7 +60,7 @@ public class BasicFillInAction implements HealthDailyAction {
             return " INFO: " + user.getAccount() + ": Requirement Already Satisfied!";
         }
         try {
-            ChainActionUtil.init(driver)
+            new ChainActionUtil(driver)
                     .Click(location.get(user.getLocation()))  // 根据用户位置去哈希表里搜
                     .Click(tripCode)
                     .Click(outOrNot)
@@ -69,8 +69,9 @@ public class BasicFillInAction implements HealthDailyAction {
                     .Click(finalConfirm);
         } catch (NoSuchElementException e) {
             return " ERROR: Elements' Xpath Might have been changed";
+        } finally {
+            driver.close();
         }
-        driver.close();
         return " INFO: " + user.getAccount() + ": Successfully Fillin!";
     }
 }
